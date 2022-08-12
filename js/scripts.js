@@ -35,59 +35,54 @@ window.addEventListener("DOMContentLoaded", function(event) {
   const submit = document.getElementById("suggest-form");
   const reset = document.getElementById("reset-button");
   const nextButton = document.getElementById("next-button");
-  const backButton = document.getElementById("back-button");
   submit.addEventListener("submit", suggestLanguage);
   nextButton.addEventListener("click", goNext);
-  backButton.addEventListener("click", goBack);
   reset.addEventListener("reset", resetForm);
-
-  // back.addEventListener("click", goBack());
-  // submit.addEventListener("submit", handleSubmission);
-  // reset.addEventListener("reset", handleSubmission);
 });
 
 function goNext() {
-  let questionDiv = document.getElementById("activeQuestion");
-  let selectedDiv = document.querySelector("div.current-active"); 
-  let currentDiv = parseInt(selectedDiv.getAttribute("id").replace("question", ""));
-  let errorText = document.querySelector("span.error-text");
-  if (currentDiv >= 5) {
-    errorText.className = "";
-    errorText.innerText = "This is the last page, please go back, reset, or submit!";
-    return;
-  } else {
-  let replaceHTML = selectedDiv.innerHTML;
-  questionDiv.innerHTML = replaceHTML;
-  selectedDiv.className = "hidden"
-  currentDiv +=  1;
-  document.getElementById("question" + currentDiv).className = "current-active";
-  errorText.className = "hidden";
-  }
-}
-
-function goBack() {
-  let questionDiv = document.getElementById("activeQuestion");
-  let selectedDiv = document.querySelector("div.current-active"); 
-  let currentDiv = parseInt(selectedDiv.getAttribute("id").replace("question", ""));
   let errorText = document.getElementById("error-text");
-  if (currentDiv <= 0) {
-    errorText.className = "";
-    errorText.innerText = "This is the first page, you cannot go back."
-    return;
-  } else {
-  let replaceHTML = selectedDiv.innerHTML;
-  questionDiv.innerHTML = replaceHTML;
-  selectedDiv.className = "hidden"
-  currentDiv -=  1;
-  document.getElementById("question" + currentDiv).className = "current-active";
   errorText.className = "hidden";
+  let questionDiv = document.getElementById("activeQuestion");
+  let selectedDiv = document.querySelector("div.current-active"); 
+  let expectedNextDiv = parseInt(selectedDiv.getAttribute("id").replace("question", ""));
+  let nextDiv;
+  if (expectedNextDiv < 6){
+    nextDiv = parseInt(selectedDiv.getAttribute("id").replace("question", ""));
+    let replaceHTML = selectedDiv.innerHTML;
+    questionDiv.innerHTML = replaceHTML;
+    selectedDiv.className = "hidden"
+    nextDiv += 1;
+    document.getElementById("question" + nextDiv).className = "current-active";
+  } else {
+    errorText.innerText = "This is the last page! Please submit, reset, or go back!"
+    errorText.className = "";
   }
 }
 
+function suggestLanguage(event) {
+  event.preventDefault();
+  const q1Value = document.getElementById("question1-input").value;
+  const q2Value = document.getElementById("question2-input").value;
+  const q3Value = document.getElementById("question3-input").value;
+  const q4Value = document.getElementById("question4-input").value;
+  const q5Value = document.getElementById("question5-input").value;
 
+  const q1Number= parseInt(q1Value);
+  const q2Number= parseInt(q2Value);
+  const q3Number= parseInt(q3Value);
+  const q4Number= parseInt(q4Value);
+  const q5Number= parseInt(q5Value);
 
-function suggestLanguage() {
-  let difficultyMod = 0 + question1 + question2 + question3 + question4 + question5;
+  const questionDiv = document.getElementById("activeQuestion");
+  const resultDiv = document.getElementById("question6");
+  const selectedDiv = document.querySelector("div.current-active");
+  selectedDiv.className = "hidden"; 
+  
+  let difficultyMod = q1Number + q2Number + q3Number + q4Number + q5Number;
+
+  questionDiv.innerHTML = resultDiv.innerHTML;
+
 }
 
 function resetForm(){

@@ -1,4 +1,7 @@
-.hidden, .current-active, .error-text, .error-text-hidden{
+.hidden, .current-active{
   visibility:hidden;
 }
 
+#error-text{
+  color:red;
+}
