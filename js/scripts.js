@@ -29,20 +29,15 @@ function handleSubmission(event){
 
 window.addEventListener("load", function(event) {
   event.preventDefault();
-
-  const a = document.getElementById("question0");
-  const b = document.querySelector("div.current-active");
-  const c = document.querySelector("span.test");
   let currentShow = 0;
   let currentQuestion = "question0"; 
 
   const submit = document.getElementById("suggest-form");
-  const reset = document.getElementById("rest-button");
+  const reset = document.getElementById("reset-button");
   const nextButton = document.getElementById ("next-button");
   submit.addEventListener("submit", suggestLanguage);
   nextButton.addEventListener("click", showNext);
-
-  // reset.addEventListener("reset", function(){});
+  reset.addEventListener("reset", resetForm);
 
   // back.addEventListener("click", goBack());
   // submit.addEventListener("submit", handleSubmission);
@@ -50,15 +45,19 @@ window.addEventListener("load", function(event) {
 });
 
 function showNext() {
-  let selectDiv = document.querySelector("div.current-active");
-  let currentDiv = parseInt(selectDiv.getAttribute("id").replace("question", ""));
-  document.querySelector("div.current-active").className = "hidden";
-  currentDiv += 1;
-  document.getElementById("question" + currentDiv).className = "current-active";
+  let currentDiv = document.querySelector(".selected"); 
+  let selectedDiv = currentDiv.getAttribute("id");
+  document.getElementById("question").innerText = currentDiv.innerText();
+  currentDiv.classList.remove("selected");
+  selectedDiv +=  1;
+  document.getElementById("question" + selectedDiv).classList.add("selected");
 
 }
 
 function suggestLanguage() {
   let difficultyMod = 0 + question1 + question2 + question3 + question4 + question5;
+}
 
+function resetForm(){
+  document.getElementById("question").innerText = document.getElementById("question0").innerText;
 }

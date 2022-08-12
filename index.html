@@ -4,28 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/styles.css" type="text/css">
-  <script src="js/scripts.js"></script>
+  <script src="js/scripts.js" defer></script>
   <title>Programming Language Suggestor</title>
 </head>
 <body>
 
   <div class="container">
     <div id="header">
-      <div class="row header-row"><h1>Programming <span class="test">asdfasdf</span>Language Suggester</h1>
+      <div class="row header-row"><h1>Programming Language Suggester</h1>
+      </div>
     </div>
-    </div>
-
-    <div class="row content-row">
       <form id="suggest-form">
         <div id="navigation">
           <button type="button" id="back-button">Back</button>
           <button type="button" id="next-button">Next</button>
           <button type="submit">Submit</button>
         </div>
-        <div id="question0" class="current-active">
-          <h12>Hello, we're going to find out what programming language you should learn. Please press the next button to begin!</h2>
+        <div id="activeQuestion"></div>
+        <div id="question0" class="hidden select">
+          <h2>Hello, we're going to find out what programming language you should learn. Please press the next button to begin!</h2>
           <p></p>
-
         </div>
         <div id="question1" class="hidden">
           <h2>What is your familiarity with programming?</h2>
@@ -37,6 +35,7 @@
           </select>
           <p><button type="button" class="back-button">Back</button><button type="button" class="next-button">Next</button></p>
         </div>
+        
         <div id="question2" class="hidden">
           <h2>Why do you want to learn the language I'm going to suggest?</h2>
           <label for="question2-input">Choose:</label>
