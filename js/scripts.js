@@ -1,12 +1,9 @@
 // Business logic
-
-function getUserInput(event)
-
   //branching for suggestion goes here
 
 // UI logic
 
-function handleSubmission(event, ){
+function handleSubmission(event){
   event.preventDefault();
   //do the thing
 }
@@ -28,22 +25,40 @@ function handleSubmission(event, ){
 //   return currentActive;
 // }
 
-// function setCurrent(currentActive){
-//   document.getElementById("question").classList = "currentActive";
-//   currentActive = 
-// }
 
 
-function suggestLanguage(question1, question2, question3, question4, question5) {
-  let difficultyMod = 0 + question1 + question2 + question3 + question4 + question5;
+window.addEventListener("load", function(event) {
+  event.preventDefault();
+
+  const a = document.getElementById("question0");
+  const b = document.querySelector("div.current-active");
+  const c = document.querySelector("span.test");
+  let currentShow = 0;
+  let currentQuestion = "question0"; 
+
+  const submit = document.getElementById("suggest-form");
+  const reset = document.getElementById("rest-button");
+  const nextButton = document.getElementById ("next-button");
+  submit.addEventListener("submit", suggestLanguage);
+  nextButton.addEventListener("click", showNext);
+
+  // reset.addEventListener("reset", function(){});
+
+  // back.addEventListener("click", goBack());
+  // submit.addEventListener("submit", handleSubmission);
+  // reset.addEventListener("reset", handleSubmission);
+});
+
+function showNext() {
+  let selectDiv = document.querySelector("div.current-active");
+  let currentDiv = parseInt(selectDiv.getAttribute("id").replace("question", ""));
+  document.querySelector("div.current-active").className = "hidden";
+  currentDiv += 1;
+  document.getElementById("question" + currentDiv).className = "current-active";
 
 }
 
-window.addEventListener("load", function() {
-  let currentActive = "question0"; 
+function suggestLanguage() {
+  let difficultyMod = 0 + question1 + question2 + question3 + question4 + question5;
 
-  const currentForm = document.querySelector("div.currentActive");
-
-  currentActive = submit.addEventListener("click", handleBack);
-  submit.addEventListener("submit", handleSubmission);
-});
+}
