@@ -5,7 +5,19 @@
 
 function handleSubmission(event){
   event.preventDefault();
+  const q1Value = document.getElementById("question1-input").value;
+  const q2Value = document.getElementById("question2-input").value;
+  const q3Value = document.getElementById("question3-input").value;
+  const q4Value = document.getElementById("question4-input").value;
+  const q5Value = document.getElementById("question5-input").value;
+
+  const q1Number= parseInt(q1Value);
+  const q2Number= parseInt(q2Value);
+  const q3Number= parseInt(q3Value);
+  const q4Number= parseInt(q4Value);
+  const q5Number= parseInt(q5Value);
   //do the thing
+  suggestLanguage(q1Number, q2Number, q3Number, q4Number, q5Number);
 }
 
 // function handleReset(event){
@@ -35,7 +47,7 @@ window.addEventListener("DOMContentLoaded", function(event) {
   const submit = document.getElementById("suggest-form");
   const reset = document.getElementById("reset-button");
   const nextButton = document.getElementById("next-button");
-  submit.addEventListener("submit", suggestLanguage);
+  submit.addEventListener("submit", handleSubmission);
   nextButton.addEventListener("click", goNext);
   reset.addEventListener("reset", resetForm);
 });
@@ -47,6 +59,11 @@ function goNext() {
   let selectedDiv = document.querySelector("div.current-active"); 
   let expectedNextDiv = parseInt(selectedDiv.getAttribute("id").replace("question", ""));
   let nextDiv;
+  if (expectedNextDiv === 6){
+    const submitButton = document.getElementById("submit-button");
+    const resetButton = document.getElementById("reset-button");
+    submitButton.className = "";
+  }
   if (expectedNextDiv < 6){
     nextDiv = parseInt(selectedDiv.getAttribute("id").replace("question", ""));
     let replaceHTML = selectedDiv.innerHTML;
@@ -60,20 +77,7 @@ function goNext() {
   }
 }
 
-function suggestLanguage(event) {
-  event.preventDefault();
-  const q1Value = document.getElementById("question1-input").value;
-  const q2Value = document.getElementById("question2-input").value;
-  const q3Value = document.getElementById("question3-input").value;
-  const q4Value = document.getElementById("question4-input").value;
-  const q5Value = document.getElementById("question5-input").value;
-
-  const q1Number= parseInt(q1Value);
-  const q2Number= parseInt(q2Value);
-  const q3Number= parseInt(q3Value);
-  const q4Number= parseInt(q4Value);
-  const q5Number= parseInt(q5Value);
-
+function suggestLanguage(q1Number, q2Number, q3Number, q4Number, q5Number) {
   const questionDiv = document.getElementById("activeQuestion");
   const resultDiv = document.getElementById("question6");
   const selectedDiv = document.querySelector("div.current-active");
@@ -86,5 +90,11 @@ function suggestLanguage(event) {
 }
 
 function resetForm(){
-  document.getElementById("question").innerText = document.getElementById("question0").innerText;
+  const initialQuestion = document.getElementById("question0");
+  const questionDiv = document.getElementById("question");
+  const selectedDiv = document.querySelector("div.current-active");
+
+  selectedDiv.className = "hidden";
+  initialQuestion.className = "current-active";
+  questionDiv.innerHTML =  initialQuestion.innerHTML;
 }
