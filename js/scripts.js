@@ -45,7 +45,7 @@ window.addEventListener("load", function(event) {
 });
 
 function showNext() {
-  let currentDiv = document.querySelector(".selected"); 
+  let currentDiv = document.querySelector(".select"); 
   let selectedDiv = currentDiv.getAttribute("id");
   document.getElementById("question").innerText = currentDiv.innerText();
   currentDiv.classList.remove("selected");
