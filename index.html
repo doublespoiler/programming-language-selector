@@ -4,93 +4,97 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/styles.css" type="text/css">
+  <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
   <script src="js/scripts.js" defer></script>
   <title>Programming Language Suggestor</title>
 </head>
 <body>
 
   <div class="container">
-    <div id="header">
-      <div class="row header-row"><h1>Programming Language Suggester</h1>
+    <div class="row header-row">
+      <div class="col-md-12" id="header">
+        <h1>Programming Language Suggester</h1>
       </div>
-    </div>
-      <form id="suggest-form">
-        <div id="activeQuestion"></div>
-        <div id="navigation">
-          <button type="button" id="next-button">Next</button>
-          <button type="submit" id="submit-button" class="hidden">Submit</button> 
-          <button type="reset" id="reset-button" class="hidden">Reset</button>
-          <span id="error-text" class="hidden"></span>
-        </div>
-        <div id="question0" class="current-active">
-          <h2>Hello, we're going to find out what programming language you should learn. Please press the next button to begin!</h2>
-          <p></p>
-        </div>
-        <div id="question1" class="hidden">
-          <h2>What is your familiarity with programming?</h2>
-          <label for="question1-input">Choose:</label>
-          <select name="question1-input" id="question1-input">
-            <option value="0" selected>Beginner</option>
-            <option value="1">Intermediate</option>
-            <option value="2">Advanced</option>
-          </select>
-        </div>
-        
-        <div id="question2" class="hidden">
-          <h2>Why do you want to learn the language I'm going to suggest?</h2>
-          <label for="question2-input">Choose:</label>
-          <select name="question2-input" id="question2-input">
-            <option value="0" selected>Just tasting programming</option>
-            <option value="1">I want to learn my first language</option>
-            <option value="2">I want to 
-            <option value="3">I want to develop my marketability</option>
-            <option value="-1">I don't know.</option>
-            <option></option>
-          </select>
-        </div>
-        <div id="question3" class="hidden">
-          <h2>What do you want to make?</h2>
-          <label for="question3-input">Choose:</label>
-          <select name="question3-input" id="question3-input">
-            <option value="0" selected>User-facing programs</option>
-            <option value="0">system-side programs</option>
-            <option value="0">games </option>
-            <option value="-1">I don't know.</option>
-          </select>
-        </div>
-        <div id="question4" class="hidden">
-          <h2>What do you want to develop for?</h2>
-          <label for="question4-input">Choose:</label>
-          <select name="question4-input" id="question4-input">
-            <option value="1" selected>Windows</option>
-            <option value="1">Mac</option>
-            <option value="1">Web</option>
-            <option value="-1">I don't know.</option>
-          </select>
-        </div>
-        <div id="question5" class="hidden">
-          <h2>Do you have games on your phone?</h2>
-          <label for="question5-input">Choose:</label>
-          <select name="question5-input" id="question5-input">
-            <option value="0" selected>Yes</option>
-            <option value="1">No</option>
-            <option value="2">Hell yeah I do</option>
-          </select>
-        </div>
-        <div class="hidden" id="question6">
-          <p><img src="images/don.png" id="result-image" alt="default image"></p>
-          <h2 id="resultName">DEFAULT</h2>
-          <p id="resultText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim lobortis scelerisque fermentum dui faucibus in ornare. Gravida in fermentum et sollicitudin ac orci phasellus egestas tellus. Orci ac auctor augue mauris. Proin fermentum leo vel orci porta. Sodales ut etiam sit amet nisl purus. Mauris a diam maecenas sed enim. Erat pellentesque adipiscing commodo elit at. Enim blandit volutpat maecenas volutpat blandit aliquam etiam. Potenti nullam ac tortor vitae purus faucibus. Vestibulum morbi blandit cursus risus at ultrices mi. Tellus molestie nunc non blandit massa enim nec dui. Consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien et. Quisque id diam vel quam elementum. Egestas congue quisque egestas diam in arcu cursus euismod. Ultrices tincidunt arcu non sodales.<br>Viverra adipiscing at in tellus integer feugiat scelerisque. In mollis nunc sed id semper. Cursus mattis molestie a iaculis at erat pellentesque adipiscing commodo. Pellentesque adipiscing commodo elit at imperdiet dui accumsan. Nisl tincidunt eget nullam non nisi est sit. Purus gravida quis blandit turpis cursus. Vitae congue mauris rhoncus aenean vel elit. Vivamus at augue eget arcu dictum varius duis at consectetur. Consectetur lorem donec massa sapien faucibus et molestie ac. Blandit volutpat maecenas volutpat blandit aliquam etiam erat. Arcu odio ut sem nulla pharetra diam sit amet. Eu ultrices vitae auctor eu augue ut. Feugiat pretium nibh ipsum consequat.</p>
-        </div>
-      </form>
-    </div>
-
-  <div id="footer">
-    <div class="row" id="footer-row"></div>
-    <p>
-
-    </p>
-  </div>
+    </div>    <!-- end header row-->
+    <div class="row content-row">
+      <div class="col-md-12">
+        <form id="suggest-form">
+          <div id="navigation">
+            <button type="button" id="next-button">Start</button>
+            <button type="submit" id="submit-button" class="hidden">Submit</button> 
+            <button type="reset" id="reset-button" class="">Reset</button>
+            <span id="error-text" class="hidden"></span>
+          </div>
+          <div id="activeQuestion"></div>
+          <div id="question0" class="current-active">
+            <h2>Hello, we're going to find out what programming language you should learn. Please press the next button to begin!</h2>
+            <p></p>
+          </div>
+          <div id="question1" class="hidden">
+            <h2>Have you done programming before?</h2>
+            <label for="question1-input">Choose:</label>
+            <select name="question1-input" id="question1-input">
+              <option value="0" selected>No</option>
+              <option value="1">A little</option>
+              <option value="2">I'm a PROgrammer</option>
+            </select>
+          </div>
+          
+          <div id="question2" class="hidden">
+            <h2>What keyboard layout do you use?</h2>
+            <label for="question2-input">Choose:</label>
+            <select name="question2-input" id="question2-input">
+              <option value="0" selected>QWERTY</option>
+              <option value="1">DVORAK</option>
+              <option value="2">COLEMAK</option>
+              <option value="2">Workman</option>
+              <option value="2">Programmer's DVORAK</option>
+              <option value="2">What do you even mean?</option>
+            </select>
+          </div>
+          <div id="question3" class="hidden">
+            <h2>What do you want to make?</h2>
+            <label for="question3-input">Choose:</label>
+            <select name="question3-input" id="question3-input">
+              <option value="0" selected>User-facing programs</option>
+              <option value="1">system-side programs</option>
+              <option value="2">games </option>
+            </select>
+          </div>
+          <div id="question4" class="hidden">
+            <h2>How do you pronounce "GIF"?</h2>
+            <label for="question4-input">Choose:</label>
+            <select name="question4-input" id="question4-input">
+              <option value="0" selected>With a hard G</option>
+              <option value="1">With a J sound</option>
+              <option value="2">G I F</option>
+              <option value="3">Graphics Interface Format</option>
+            </select>
+          </div>
+          <div id="question5" class="hidden">
+            <h2>What do you like to do in your spare time?</h2>
+            <label for="question5-input">Choose:</label>
+            <select name="question5-input" id="question5-input">
+              <option value="0" selected>Play video games</option>
+              <option value="1">Go on social media(s)</option>
+              <option value="2">Try to figure out how things work</option>
+            </select>
+          </div>
+          <div class="hidden" id="question6">
+            <p><img src="images/don.png" id="result-image" alt="default image"></p>
+            <h2 id="resultName">DEFAULT</h2>
+            <p id="resultText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim lobortis scelerisque fermentum dui faucibus in ornare. Gravida in fermentum et sollicitudin ac orci phasellus egestas tellus. Orci ac auctor augue mauris. Proin fermentum leo vel orci porta. Sodales ut etiam sit amet nisl purus. Mauris a diam maecenas sed enim. Erat pellentesque adipiscing commodo elit at. Enim blandit volutpat maecenas volutpat blandit aliquam etiam. Potenti nullam ac tortor vitae purus faucibus. Vestibulum morbi blandit cursus risus at ultrices mi. Tellus molestie nunc non blandit massa enim nec dui. Consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien et. Quisque id diam vel quam elementum. Egestas congue quisque egestas diam in arcu cursus euismod. Ultrices tincidunt arcu non sodales.</p>
+          </div>
+        </form>
+      </div>    <!-- end column -->
+    </div>    <!-- end content row -->
+    <div class="row footer-row">
+      <div class="col-md-12">
+        <p>
+        </p>
+      </div>
+    </div> <!-- end footer row-->
+  </div> <!-- end container -->
   
   
 </body>
