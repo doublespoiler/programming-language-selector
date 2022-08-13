@@ -1,5 +1,11 @@
-.hidden, .current-active{
-  visibility:hidden;
+.hidden{
+  visibility:hidden;  
+  float:left;
+  position:absolute;
+}
+
+.container{
+  position:relative;
 }
 
 #error-text{
