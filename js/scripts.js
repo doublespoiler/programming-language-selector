@@ -26,9 +26,10 @@ function handleSubmission(event){
   //do the thing
   nextButton.className = "hidden";
   submitButton.className = "hidden";
-  suggestLanguage(q1Number, q2Number, q3Number, q4Number, q5Number);
-}
 
+  suggestLanguage();
+  // const result = calculate(q1Number, q2Number, q3Number, q4Number, q5Number);
+}
 // function handleReset(event){
 //   event.preventDefault();
 
@@ -74,26 +75,18 @@ function goNext() {
   let expectedNextDiv = parseInt(selectedDiv.getAttribute("id").replace("question", ""));
   let nextDiv;
   if (selectedDiv.id === "question0"){
-    nextDiv = document.getElementById("question1");
-    const replaceHTML = nextDiv.innerHTML;
-    questionDiv.innerHTML = replaceHTML;
-    selectedDiv.className = "hidden";
-    document.getElementById("question2").className = "current-active";
-  } else if (expectedNextDiv === 5){
-    selectedDiv = document.getElementById("question5");
-    let replaceHTML = selectedDiv.innerHTML;
-    const submitButton = document.getElementById("submit-button");
-    const resetButton = document.getElementById("reset-button");
-    const rootDiv = document.getElementById("question0");
-    questionDiv.innerHtml  = replaceHTML;
-    selectedDiv.className = "hidden";
-
-    submitButton.className = "";
-    resetButton.className = "";
-
-    rootDiv.className = "current-active";
-    console.log(replaceHTML);
+  nextDiv = document.getElementById("question1");
+  const replaceHTML = nextDiv.innerHTML;
+  questionDiv.innerHTML = replaceHTML;
+  selectedDiv.className = "hidden";
+  document.getElementById("question2").className = "current-active";
   } else if (expectedNextDiv < 6){
+    if (selectedDiv.id === "question5") {
+      const submitButton = document.getElementById("submit-button");
+      const resetButton = document.getElementById("reset-button");
+      submitButton.className = "";
+      resetButton.className = "";
+    }
     nextDiv = parseInt(selectedDiv.getAttribute("id").replace("question", ""));
     let replaceHTML = selectedDiv.innerHTML;
     questionDiv.innerHTML = replaceHTML;
@@ -106,15 +99,13 @@ function goNext() {
   }
 }
 
-function suggestLanguage(q1Number, q2Number, q3Number, q4Number, q5Number) {
+function suggestLanguage(result) {
   const questionDiv = document.getElementById("activeQuestion");
+
+
+
   const resultDiv = document.getElementById("question6");
-  const selectedDiv = document.querySelector("div.current-active");
-  
-  let difficultyMod = q1Number + q2Number + q3Number + q4Number + q5Number;
-
   questionDiv.innerHTML = resultDiv.innerHTML;
-
 }
 
 function resetForm(){
@@ -130,7 +121,6 @@ function resetForm(){
   resetButton.className = "hidden";
   nextButton.className = "";
 
-  
   selectedDiv.className = "hidden";
   initialQuestion.className = "current-active";
   questionDiv.innerHTML =  initialQuestion.innerHTML;
