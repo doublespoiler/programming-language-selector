@@ -5,6 +5,9 @@
 
 function handleSubmission(event){
   event.preventDefault();
+
+  let errorText = document.getElementById("error-text");
+  errorText.className = "hidden";
   const q1Value = document.getElementById("question1-input").value;
   const q2Value = document.getElementById("question2-input").value;
   const q3Value = document.getElementById("question3-input").value;
@@ -16,7 +19,13 @@ function handleSubmission(event){
   const q3Number= parseInt(q3Value);
   const q4Number= parseInt(q4Value);
   const q5Number= parseInt(q5Value);
+
+  const nextButton = document.getElementById("next-button");
+  const submitButton = document.getElementById("submit-button");
+
   //do the thing
+  nextButton.className = "hidden";
+  submitButton.className = "hidden";
   suggestLanguage(q1Number, q2Number, q3Number, q4Number, q5Number);
 }
 
@@ -41,30 +50,50 @@ function handleSubmission(event){
 
 window.addEventListener("DOMContentLoaded", function(event) {
   event.preventDefault();
-  let currentShow = 0;
-  let currentQuestion = "question0"; 
+  
+  const rootDiv = document.getElementById("question0");
+  const questionDiv = document.getElementById("activeQuestion");
+  const replaceHTML = rootDiv.innerHTML;
+  rootDiv.className = "current-active"
+  questionDiv.innerHTML = replaceHTML;
+
 
   const submit = document.getElementById("suggest-form");
   const reset = document.getElementById("reset-button");
   const nextButton = document.getElementById("next-button");
   submit.addEventListener("submit", handleSubmission);
   nextButton.addEventListener("click", goNext);
-  reset.addEventListener("reset", resetForm);
+  reset.addEventListener("click", resetForm);
 });
 
 function goNext() {
-  let errorText = document.getElementById("error-text");
+  const errorText = document.getElementById("error-text");
   errorText.className = "hidden";
-  let questionDiv = document.getElementById("activeQuestion");
+  const questionDiv = document.getElementById("activeQuestion");
   let selectedDiv = document.querySelector("div.current-active"); 
   let expectedNextDiv = parseInt(selectedDiv.getAttribute("id").replace("question", ""));
   let nextDiv;
-  if (expectedNextDiv === 6){
+  if (selectedDiv.id === "question0"){
+    nextDiv = document.getElementById("question1");
+    const replaceHTML = nextDiv.innerHTML;
+    questionDiv.innerHTML = replaceHTML;
+    selectedDiv.className = "hidden";
+    document.getElementById("question2").className = "current-active";
+  } else if (expectedNextDiv === 5){
+    selectedDiv = document.getElementById("question5");
+    let replaceHTML = selectedDiv.innerHTML;
     const submitButton = document.getElementById("submit-button");
     const resetButton = document.getElementById("reset-button");
+    const rootDiv = document.getElementById("question0");
+    questionDiv.innerHtml  = replaceHTML;
+    selectedDiv.className = "hidden";
+
     submitButton.className = "";
-  }
-  if (expectedNextDiv < 6){
+    resetButton.className = "";
+
+    rootDiv.className = "current-active";
+    console.log(replaceHTML);
+  } else if (expectedNextDiv < 6){
     nextDiv = parseInt(selectedDiv.getAttribute("id").replace("question", ""));
     let replaceHTML = selectedDiv.innerHTML;
     questionDiv.innerHTML = replaceHTML;
@@ -81,7 +110,6 @@ function suggestLanguage(q1Number, q2Number, q3Number, q4Number, q5Number) {
   const questionDiv = document.getElementById("activeQuestion");
   const resultDiv = document.getElementById("question6");
   const selectedDiv = document.querySelector("div.current-active");
-  selectedDiv.className = "hidden"; 
   
   let difficultyMod = q1Number + q2Number + q3Number + q4Number + q5Number;
 
@@ -91,9 +119,18 @@ function suggestLanguage(q1Number, q2Number, q3Number, q4Number, q5Number) {
 
 function resetForm(){
   const initialQuestion = document.getElementById("question0");
-  const questionDiv = document.getElementById("question");
+  const questionDiv = document.getElementById("activeQuestion");
   const selectedDiv = document.querySelector("div.current-active");
+  const errorText = document.getElementById("error-text");
+  const submitButton = document.getElementById("submit-button");
+  const resetButton = document.getElementById("reset-button");
+  const nextButton = document.getElementById("next-button");
+  errorText.className = "hidden";
+  submitButton.className = "hidden";
+  resetButton.className = "hidden";
+  nextButton.className = "";
 
+  
   selectedDiv.className = "hidden";
   initialQuestion.className = "current-active";
   questionDiv.innerHTML =  initialQuestion.innerHTML;
